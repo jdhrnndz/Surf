@@ -73,11 +73,40 @@ class Signup extends CI_Controller {
     }*/
 
     function insert_info(){
-        $this->signup_model->insert_data();
 
-        $result = $this->signup_model->fetch_data();
-        $this->load->view('success_view', $result);
 
+        $email_config = Array(
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'loreliemiranda@gmail.com',
+            'smtp_pass' => 'bashful23...'
+        );
+
+        $this->load->library('email', $email_config);
+        $this->email->set_newline("\r\n");
+
+        $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
+        $this->email->to('loreliemiranda@gmail.com');
+        $this->email->subject('We have received your Sign up request');
+        $this->email->message("Greetings from ICS e-Lib!
+
+         Please wait for the confimation of our administrator. We will send you an email as soon as your application is approved. Thank you
+
+         Your Truly,
+         DevTeam
+         ");
+
+        if( $this->email->send()){
+
+            $this->signup_model->insert_data();
+
+            $result = $this->signup_model->fetch_data();
+            $this->load->view('success_view', $result);
+        }
+        else{
+            show_error($this->email->print_debugger());
+        }
     }
 }
 
