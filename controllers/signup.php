@@ -79,8 +79,8 @@ class Signup extends CI_Controller {
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'loreliemiranda@gmail.com',
-            'smtp_pass' => 'bashful23...'
+            'smtp_user' => 'ics.elib.admistrator@gmail.com',
+            'smtp_pass' => 'icselibadmin'
         );
 
         $this->load->library('email', $email_config);
