@@ -1,4 +1,11 @@
-
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Jr Pichon Bautista
+ * Date: 1/19/14
+ * Time: 3:35 PM
+ */
+?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Signup extends CI_Controller {
