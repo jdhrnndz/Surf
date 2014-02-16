@@ -52,7 +52,7 @@ class Signup extends CI_Controller {
 
         $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
         $this->email->to($user_email);
-        $this->email->subject('Thank you for signing up for an ICS e-Lib account!');
+        $this->email->subject('Sign Up for an ICS e-Lib Account');
         $this->email->message("
         Greetings from ICS e-Lib!
 
