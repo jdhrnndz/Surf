@@ -57,9 +57,7 @@ class Signup extends CI_Controller {
         $this->email->message($message);
 
         if( $this->email->send()){
-
             $this->signup_model->insert_data();
-
             $result = $this->signup_model->fetch_data();
             $this->load->view('success_view', $result);
         }
