@@ -29,28 +29,22 @@ class Manage_account extends CI_Controller {
         $user_email = $_POST["email"];
         
         if(isset($_POST["approve"])){
-            $this->load->library('email', $email_config);
-			$this->email->set_newline("\r\n");
+        	$this->load->library('email', $email_config);
+		$this->email->set_newline("\r\n");
+		$this->email->set_mailtype('html');
 
-			$this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
-			$this->email->to($user_email);
-			$this->email->subject('Request for an ICS e-Lib Account approved!');
-			$this->email->message("
-			Greetings from ICS e-Lib!
+		$message=$this->load->view('approved_email', '', TRUE);
+		$this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
+		$this->email->to($user_email);
+		$this->email->subject('Request for an ICS e-Lib Account Approved!');
+		$this->email->message($message);
 
-			Your request has been approved. Check what's new in our e-Lib!
-			Thank You!
-					 
-			Yours Truly,
-			ICS e-Lib DevTeam
-			");
-
-				if( $this->email->send()){
-					$this->manage_account_model->approve_account();
-				}
-				else{
-					show_error($this->email->print_debugger());
-				}
+		if( $this->email->send()){
+			$this->manage_account_model->approve_account();
+		}
+		else{
+			show_error($this->email->print_debugger());
+		}
         }
         
         else if(isset($_POST["deactivate"])){
