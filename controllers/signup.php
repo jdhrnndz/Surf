@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jr Pichon Bautista
- * Date: 1/19/14
- * Time: 3:35 PM
- */
+
 ?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -49,14 +44,17 @@ class Signup extends CI_Controller {
             'smtp_user' => 'ics.elib.admistrator@gmail.com',
             'smtp_pass' => 'icselibadmin'
         );
+        
+        $user_email=$_POST["email"];
 
         $this->load->library('email', $email_config);
         $this->email->set_newline("\r\n");
 
         $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
-        $this->email->to('johndeniellehernandez@gmail.com');
+        $this->email->to($user_email);
         $this->email->subject('Thank you for signing up for an ICS e-Lib account!');
-        $this->email->message("Greetings from ICS e-Lib!
+        $this->email->message("
+        Greetings from ICS e-Lib!
 
          Your request has been received, verified and awaiting for approval. We will get you notified as soon as your application is approved.
 
