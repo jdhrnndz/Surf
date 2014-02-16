@@ -54,7 +54,8 @@ class Signup_model extends CI_Model {
                                            sex,
                                            birth_date,
                                            is_student,
-                                           is_faculty)
+                                           is_faculty,
+                                           status)
                                 VALUES ('" . $this->input->post('email') . "','" .
                                             $this->input->post('student_number') . "','" .
                                             $this->input->post('degree_program') . "','" .
@@ -66,7 +67,8 @@ class Signup_model extends CI_Model {
                                             $this->input->post('sex') . "','" .
                                             $birthday . "'," .
                                             1 . "," .
-                                            0 . ");"
+                                            0 . ",
+											'Pending Approval');"
             );
         }
         else{
@@ -79,7 +81,8 @@ class Signup_model extends CI_Model {
                                            birth_date,
                                            employee_number,
                                            is_student,
-                                           is_faculty)
+                                           is_faculty,
+                                           status)
                                 VALUES ('" . $this->input->post('email') . "','" .
                                             $this->input->post('password') . "','" .
                                             $this->input->post('first_name') . "','" .
@@ -89,7 +92,8 @@ class Signup_model extends CI_Model {
                                             $birthday . "','" .
                                             $this->input->post('employee_number') . "'," .
                                             0 . "," .
-                                            1 . ");"
+                                            1 . ",
+											'Pending Approval');"
             );
         }
 
