@@ -49,20 +49,13 @@ class Signup extends CI_Controller {
 
         $this->load->library('email', $email_config);
         $this->email->set_newline("\r\n");
-
+        $this->email->set_mailtype('html');
+        
+        $message->this->load->view('request_email','',TRUE);
         $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
         $this->email->to($user_email);
         $this->email->subject('Sign Up for an ICS e-Lib Account');
-        $this->email->message("
-        Greetings from ICS e-Lib!
-
-         Your request has been received, verified and awaiting for approval. We will get you notified as soon as your application is approved.
-
-         Please wait for the confimation of our administrator. We will send you an email as soon as your application is approved. Thank you.
-
-         Yours Truly,
-         ICS e-Lib DevTeam
-         ");
+        $this->email->message($message);
 
         if( $this->email->send()){
 
