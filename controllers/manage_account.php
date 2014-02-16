@@ -47,6 +47,25 @@ class Manage_account extends CI_Controller {
             }
         }
         
+         else if(isset($_POST["activate"])){
+            $this->load->library('email', $email_config);
+            $this->email->set_newline("\r\n");
+            $this->email->set_mailtype('html');
+
+            $message=$this->load->view('activate_email', '', TRUE);
+            $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
+            $this->email->to($user_email);
+            $this->email->subject('Your Account at ICS e-lib has been activated');
+            $this->email->message($message);
+
+            if( $this->email->send()){
+                $this->manage_account_model->activate_account();
+            }
+            else{
+                show_error($this->email->print_debugger());
+            }
+        }
+        
         else if(isset($_POST["deactivate"])){
             $this->load->library('email', $email_config);
             $this->email->set_newline("\r\n");
@@ -83,9 +102,6 @@ class Manage_account extends CI_Controller {
             else{
                 show_error($this->email->print_debugger());
             }
-        }
-        else if(isset($_POST["activate"])){
-            $this->manage_account_model->activate_account();
         }
     }
 }
