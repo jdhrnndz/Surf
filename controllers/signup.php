@@ -35,7 +35,6 @@ class Signup extends CI_Controller {
             $this->load->view('success_view');
         }
     }
-
     function insert_info(){
         $email_config = Array(
             'protocol'  => 'smtp',

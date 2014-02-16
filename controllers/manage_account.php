@@ -30,28 +30,59 @@ class Manage_account extends CI_Controller {
         
         if(isset($_POST["approve"])){
         	$this->load->library('email', $email_config);
-		$this->email->set_newline("\r\n");
-		$this->email->set_mailtype('html');
+            $this->email->set_newline("\r\n");
+            $this->email->set_mailtype('html');
 
-		$message=$this->load->view('approved_email', '', TRUE);
-		$this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
-		$this->email->to($user_email);
-		$this->email->subject('Request for an ICS e-Lib Account Approved!');
-		$this->email->message($message);
+            $message=$this->load->view('approved_email', '', TRUE);
+            $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
+            $this->email->to($user_email);
+            $this->email->subject('Request for an ICS e-Lib Account Approved!');
+            $this->email->message($message);
 
-		if( $this->email->send()){
-			$this->manage_account_model->approve_account();
-		}
-		else{
-			show_error($this->email->print_debugger());
-		}
+            if( $this->email->send()){
+                $this->manage_account_model->approve_account();
+            }
+            else{
+                show_error($this->email->print_debugger());
+            }
         }
         
         else if(isset($_POST["deactivate"])){
-            $this->manage_account_model->deactivate_account();
+            $this->load->library('email', $email_config);
+            $this->email->set_newline("\r\n");
+            $this->email->set_mailtype('html');
+
+            $message=$this->load->view('deactivate_email', '', TRUE);
+            $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
+            $this->email->to($user_email);
+            $this->email->subject('Your Account at ICS e-lib has been deactivated');
+            $this->email->message($message);
+
+            if( $this->email->send()){
+                $this->manage_account_model->deactivate_account();
+            }
+            else{
+                show_error($this->email->print_debugger());
+            }
+
         }
         else if(isset($_POST["delete"])){
-            $this->manage_account_model->delete_account();
+            $this->load->library('email', $email_config);
+            $this->email->set_newline("\r\n");
+            $this->email->set_mailtype('html');
+
+            $message=$this->load->view('delete_email', '', TRUE);
+            $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
+            $this->email->to($user_email);
+            $this->email->subject('Your Account at ICS e-lib has been deleted');
+            $this->email->message($message);
+
+            if( $this->email->send()){
+                $this->manage_account_model->delete_account();
+            }
+            else{
+                show_error($this->email->print_debugger());
+            }
         }
         else if(isset($_POST["activate"])){
             $this->manage_account_model->activate_account();
