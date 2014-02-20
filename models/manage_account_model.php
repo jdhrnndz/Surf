@@ -23,23 +23,34 @@ class Manage_account_model extends CI_Model {
         $query = "UPDATE user SET status='Active' WHERE email='" . $this->input->post('approve') . "'";
 
         $this->db->query($query);
+
+        //lagyan ng checker kung na-update yung database
+        //if true
+            //then email user.
+
+        //email mechanism
+        header("Location:../");
     }
 
     public function deactivate_account(){
         $query = "UPDATE user SET status='Deactivated' WHERE email='" . $this->input->post('deactivate') . "'";
 
         $this->db->query($query);
+
+        header("Location:../");
     }
 
     public function delete_account(){
         $query = "DELETE FROM user WHERE email='" . $this->input->post('delete') . "'";
 
         $this->db->query($query);
+        header("Location:../");
     }
 
     public function activate_account(){
         $query = "UPDATE user SET status='Active' WHERE email='" . $this->input->post('activate') . "'";
 
         $this->db->query($query);
+        header("Location:../");
     }
 }

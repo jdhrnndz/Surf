@@ -29,6 +29,7 @@
                     }
                     else{
                         echo "<button type=\"submit\" name=\"activate\" value=\"" . $result[$i]->email . "\">Activate</button>";
+                        echo "<button type=\"submit\" name=\"delete\" value=\"" . $result[$i]->email . "\">Delete</button>";
                     }
                     echo "</div></br>";
                 }

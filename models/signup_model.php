@@ -54,8 +54,7 @@ class Signup_model extends CI_Model {
                                            sex,
                                            birth_date,
                                            is_student,
-                                           is_faculty,
-                                           status)
+                                           is_faculty)
                                 VALUES ('" . $this->input->post('email') . "','" .
                                             $this->input->post('student_number') . "','" .
                                             $this->input->post('degree_program') . "','" .
@@ -67,8 +66,7 @@ class Signup_model extends CI_Model {
                                             $this->input->post('sex') . "','" .
                                             $birthday . "'," .
                                             1 . "," .
-                                            0 . ",
-											'Pending Approval');"
+                                            0 . ");"
             );
         }
         else{
@@ -81,8 +79,7 @@ class Signup_model extends CI_Model {
                                            birth_date,
                                            employee_number,
                                            is_student,
-                                           is_faculty,
-                                           status)
+                                           is_faculty)
                                 VALUES ('" . $this->input->post('email') . "','" .
                                             $this->input->post('password') . "','" .
                                             $this->input->post('first_name') . "','" .
@@ -92,11 +89,27 @@ class Signup_model extends CI_Model {
                                             $birthday . "','" .
                                             $this->input->post('employee_number') . "'," .
                                             0 . "," .
-                                            1 . ",
-											'Pending Approval');"
+                                            1 . ");"
             );
         }
 
+    }
+
+    function checkAvailEmail(){
+        $email = $this->input->get('email');
+
+        $query = "SELECT * FROM user WHERE email='$email'";
+
+        $result = $this->db->query($query);
+
+        $count = 0;
+        foreach($result->result() as $i){
+            $count++;
+        }
+        if($count < 1)
+            echo 'Email is available.';
+        else if($count >= 0)
+            echo 'Email has already been used.';
     }
 }
 ?>
