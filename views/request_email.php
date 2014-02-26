@@ -1,14 +1,25 @@
 <html>
 <body>
-<h2>Thank you for signing up for an ICS e-Lib account! </h2>
-<p>Your request has been received, verified and awaiting for approval. We will get you notified as soon as your application is approved. </p>
-<br>
-<hr/>
-<p style="font-size: 0.7em; padding: -10px; color:#888">This is a system generated email. You are unable to respond directly to this message.</p>
-<p style="font-size: 0.7em; padding: -10px; color:#888">You are receiving this e-mail to ensure that you requested an account to ICS e-Lib. If you did not request this action please report this activity to us.</p>
-<p style="font-size: 0.7em; padding: -10px; color:#888">ICS e-Lib Account is the main sign-on account for online ICS Library resources.</p>
-<p style="font-size: 0.7em; padding: -10px; color:#888">Rights and Use Information | Privacy Policy</p>
-<p style="font-size: 0.7em; padding: -10px; color:#888">Institute of Computer Science, University of the Philippines Los Banos</p>
-<p style="font-size: 0.7em; padding: -10px; color:#888">&copy; 2014 ICS e-Lib DevTeam</p>
+<div style="position:absolute;">
+    <div id="body">
+        <h2>Your request for an account has been received.</h2>
+        <p>Your sign-up request is now waiting for approval from the administrator. Kindly wait for another email regarding the activation of your account. </p>
+        <p>Thank you!</p>
+        </br>
+        <hr/>
+
+        <p style="font-size: 0.7em; padding: -10px; color:#428bce">This is a system generated email.</p>
+        <p style="font-size: 0.7em; padding: -10px; color:#428bce">ICS e-Lib Account is the main sign-in account for online ICS Library resources.</p>
+        <p style="font-size: 0.7em; padding: -10px; color:#428bce">Rights and Use Information | Privacy Policy</p>
+        <p style="font-size: 0.7em; padding: -10px; color:#428bce">Institute of Computer Science, University of the Philippines Los Baños</p>
+        <p style="font-size: 0.7em; padding: -10px; color:#428bce">&copy; 2014 ICS e-Lib DevTeam</p>
+    </div>
+</div>
 </body>
 </html>
+
+<style>
+    #body{
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+</style>

@@ -1,10 +1,14 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Jr Pichon Bautista
+ * Date: 1/19/14
+ * Time: 3:35 PM
+ */
 ?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Signup extends CI_Controller {
-
 
     function __construct(){
         parent::__construct();
@@ -24,7 +28,7 @@ class Signup extends CI_Controller {
         $this->form_validation->set_rules('first_name', 'First_name', 'required|min_length[2]|xss_clean');
         $this->form_validation->set_rules('middle_name', 'Middle_name', 'required|min_length[1]|xss_clean');
         $this->form_validation->set_rules('last_name', 'Last_name', 'required|min_length[1]|xss_clean');
-        $this->form_validation->set_rules('sex', 'Sex', 'required|min_length[4]|xss_clean');
+        $this->form_validation->set_rules('gender', 'Gender', 'required|min_length[4]|xss_clean');
         $this->form_validation->set_rules('birth_date', 'Birth_date', 'required|xss_clean');
         $this->form_validation->set_rules('employee_number', 'Employee_number', 'required|xss_clean');
 
@@ -35,6 +39,7 @@ class Signup extends CI_Controller {
             $this->load->view('success_view');
         }
     }
+
     function insert_info(){
         $email_config = Array(
             'protocol'  => 'smtp',
@@ -43,17 +48,14 @@ class Signup extends CI_Controller {
             'smtp_user' => 'ics.elib.admistrator@gmail.com',
             'smtp_pass' => 'icselibadmin'
         );
-        
-        $user_email=$_POST["email"];
 
         $this->load->library('email', $email_config);
         $this->email->set_newline("\r\n");
-        $this->email->set_mailtype('html');
-        
-        $message->this->load->view('request_email','',TRUE);
+
+        $message=$this->load->view('request_email', '', TRUE);
         $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
-        $this->email->to($user_email);
-        $this->email->subject('Sign Up for an ICS e-Lib Account');
+        $this->email->to($this->input->post('email'));
+        $this->email->subject('ICS eLib Account Request Waiting for Approval');
         $this->email->message($message);
 
         if( $this->email->send()){
@@ -64,6 +66,11 @@ class Signup extends CI_Controller {
         else{
             show_error($this->email->print_debugger());
         }
+    }
+
+    function checkAvailEmail(){
+
+        $this->signup_model->checkAvailEmail();
     }
 }
 
