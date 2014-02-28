@@ -51,6 +51,7 @@ class Signup extends CI_Controller {
 
         $this->load->library('email', $email_config);
         $this->email->set_newline("\r\n");
+        $this->email->set_mailtype('html');
 
         $message=$this->load->view('request_email', '', TRUE);
         $this->email->from('ics.elib.administrator@gmail.com', 'ICS e-lib Admistrator');
