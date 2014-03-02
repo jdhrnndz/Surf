@@ -1,4 +1,3 @@
-
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Signup extends CI_Controller {
@@ -52,8 +51,7 @@ class Signup extends CI_Controller {
         if( $this->email->send()){
             $this->signup_model->insert_data();
             $result = $this->signup_model->fetch_data();
-            //$this->load->view('success_view', $result);
-            echo '<script type="text/javascript">alert(\" Sign up Successful. Click ok to return to homepage.\"); </script>';
+            $this->load->view('success_view', $result);
         }
         else{
             show_error($this->email->print_debugger());
