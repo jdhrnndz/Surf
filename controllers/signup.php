@@ -28,9 +28,6 @@ class Signup extends CI_Controller {
         if ($this->form_validation->run() == FALSE){
             $this->load->view('signup_view');
         }
-        else{
-            $this->load->view('success_view');
-        }
     }
 
     function insert_info(){
@@ -55,7 +52,8 @@ class Signup extends CI_Controller {
         if( $this->email->send()){
             $this->signup_model->insert_data();
             $result = $this->signup_model->fetch_data();
-            $this->load->view('success_view', $result);
+            //$this->load->view('success_view', $result);
+            echo '<script type="text/javascript">alert(\" Sign up Successful. Click ok to return to homepage.\"); </script>';
         }
         else{
             show_error($this->email->print_debugger());

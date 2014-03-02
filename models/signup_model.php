@@ -24,7 +24,6 @@ class Signup_model extends CI_Model {
         $date = str_replace('/', '-', $this->input->post('birthday'));
         $birthday = date('Y-m-d', strtotime($date));
 
-        echo "type: " . $this->input->post('type');
         if($this->input->post('type') == 'Student'){
 
             switch($this->input->post('classification')){
